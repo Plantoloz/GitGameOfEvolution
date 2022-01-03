@@ -1,19 +1,31 @@
 #include <SFML/Graphics.hpp>
-
+#include <iostream>
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
+    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!", sf::Style::Close | sf::Style::Resize);
+    sf::RectangleShape shape(sf::Vector2f(100.f, 100.f));
     shape.setFillColor(sf::Color::Green);
 
     while (window.isOpen())
     {
-        sf::Event event;
-        while (window.pollEvent(event))
+        sf::Event evnt;
+        while (window.pollEvent(evnt))
         {
-            if (event.type == sf::Event::Closed)
+
+            switch (evnt.type) {
+            case sf::Event::Closed:
                 window.close();
+                break;
+            case sf::Event::Resized:
+                std::cout << "Height: " << evnt.size.height << " Width: " << evnt.size.width << std::endl;
+                break;
+            case sf::Event::TextEntered:
+                if (evnt.text.unicode < 128) {
+                    printf("%c", evnt.text.unicode);
+                }
+            }
+
         }
 
         window.clear();
