@@ -21,8 +21,6 @@ int main()
                 break;
             case sf::Event::Resized:
                 std::cout << "Height: " << event1.size.height << " Width: " << event1.size.width << std::endl;
-                Species being(1);
-                being.exists();
                 break;
             case sf::Event::TextEntered:
                 if (event1.text.unicode < 128) {
@@ -34,7 +32,13 @@ int main()
         }
 
         window.clear();
+
+        // Function to Generate World
+        // Function to Display World
+
         window.draw(shape);
+        
+
         window.display();
     }
 

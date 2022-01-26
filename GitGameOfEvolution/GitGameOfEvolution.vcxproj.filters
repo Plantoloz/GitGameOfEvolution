@@ -21,10 +21,10 @@
     <ClCompile Include="Species.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="world.cpp">
+    <ClCompile Include="World.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="noiseMap.cpp">
+    <ClCompile Include="NoiseMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,10 +32,10 @@
     <ClInclude Include="Species.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="world.h">
+    <ClInclude Include="World.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="noiseMap.h">
+    <ClInclude Include="NoiseMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
