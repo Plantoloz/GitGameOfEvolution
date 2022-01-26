@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "Species.h"
+#include "World.h"
 
 int main()
 {
@@ -35,8 +36,9 @@ int main()
 
         // Function to Generate World
         // Function to Display World
-
-        window.draw(shape);
+        World world(100, 100);
+        
+        world.drawWindow(window);
         
 
         window.display();
