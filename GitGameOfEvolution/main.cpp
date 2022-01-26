@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+#include "Species.h"
+
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!", sf::Style::Close | sf::Style::Resize);
@@ -9,21 +11,24 @@ int main()
 
     while (window.isOpen())
     {
-        sf::Event evnt;
-        while (window.pollEvent(evnt))
+        sf::Event event1;
+        while (window.pollEvent(event1))
         {
 
-            switch (evnt.type) {
+            switch (event1.type) {
             case sf::Event::Closed:
                 window.close();
                 break;
             case sf::Event::Resized:
-                std::cout << "Height: " << evnt.size.height << " Width: " << evnt.size.width << std::endl;
+                std::cout << "Height: " << event1.size.height << " Width: " << event1.size.width << std::endl;
+                Species being(1);
+                being.exists();
                 break;
             case sf::Event::TextEntered:
-                if (evnt.text.unicode < 128) {
-                    printf("%c", evnt.text.unicode);
+                if (event1.text.unicode < 128) {
+                    printf("%c", event1.text.unicode);
                 }
+                break;
             }
 
         }
