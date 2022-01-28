@@ -1,14 +1,13 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
-
-#include "Species.h"
 #include "World.h"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!", sf::Style::Close | sf::Style::Resize);
-    sf::RectangleShape shape(sf::Vector2f(100.f, 100.f));
-    shape.setFillColor(sf::Color::Green);
+    int winHeight = 500;
+    int winLenght = 500;
+    sf::RenderWindow window(sf::VideoMode(winLenght, winHeight), "SFML works!", sf::Style::Close | sf::Style::Resize);
+    World world(winLenght, winHeight);
 
     while (window.isOpen())
     {
@@ -34,11 +33,10 @@ int main()
 
         window.clear();
 
-        // Function to Generate World
-        // Function to Display World
-        World world(100, 100);
+        // Function to Generate World. A Class to simulate the simulation
         
-        world.drawWindow(window);
+        // Function to Display World
+        world.drawWorld(window);
         
 
         window.display();

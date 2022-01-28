@@ -2,16 +2,20 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+#include "NoiseMap.h"
 
 class World
 {
 public: 
-	World(int, int);
-	void drawWindow(sf::RenderWindow&);
+	void drawWorld(sf::RenderWindow&);
+	World(float, float);
 private:
-	std::vector<std::vector<int>> world;
-	int width;
-	int height;
+	sf::RectangleShape drawQuad(float size, float y, float x, float color);
+	void drawFromWorld(sf::RenderWindow& window);
+	std::vector<std::vector<float>> world;
+	float width;
+	float height;
+	const int gridSize = 20;
 };	
 
 	
