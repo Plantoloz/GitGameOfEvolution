@@ -1,13 +1,9 @@
 #include "World.h"
 
-World::World(float width, float height) {
+World::World(int width, int height) {
 	this->height = height;
 	this->width = width;
-	this->world = std::vector<std::vector<float>>((int)width/gridSize, std::vector<float>((int)height/gridSize));
-	this->world[10][10] = 1;
-	this->world[10][9] = 0.4f;
-	this->world[1][1] = 0.9f;
-	this->world[0][0] = 1;
+	this->world = std::vector<std::vector<float>>((int)(width/gridSize), std::vector<float>((int)(height/gridSize)));
 	this->world = NoiseMap::createNoiseMap(world);
 }
 
@@ -16,9 +12,9 @@ void World::drawWorld(sf::RenderWindow &window) {
 }
 
 void World::drawFromWorld(sf::RenderWindow &window) {
-	for (float y = 0; y < world.size(); y++)
+	for (int y = 0; y < world.size(); y++)
 	{
-		for (float x = 0; x < world[y].size(); x++)
+		for (int x = 0; x < world[y].size(); x++)
 		{
 			if (world[y][x] > 0.3f) {
 				window.draw(drawQuad(gridSize, y * gridSize, x * gridSize, world[y][x]));

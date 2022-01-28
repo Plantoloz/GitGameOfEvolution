@@ -8,14 +8,14 @@ class World
 {
 public: 
 	void drawWorld(sf::RenderWindow&);
-	World(float, float);
+	World(int, int);
 private:
 	sf::RectangleShape drawQuad(float size, float y, float x, float color);
 	void drawFromWorld(sf::RenderWindow& window);
 	std::vector<std::vector<float>> world;
-	float width;
-	float height;
-	const int gridSize = 20;
+	int width;
+	int height;
+	const float gridSize = 20;
 };	
 
 	
