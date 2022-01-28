@@ -1,7 +1,7 @@
 #include "NoiseMap.h"
 
 std::vector<std::vector<float>> NoiseMap::createNoiseMap(std::vector<std::vector<float>> world) {
-	srand(time(NULL));
+	srand((unsigned int)time(NULL));
 	//std::srand(static_cast<unsigned int>(std::time(nullptr)));  
 
 	
