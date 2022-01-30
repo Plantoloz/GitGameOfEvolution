@@ -11,11 +11,12 @@ public:
 	World(int, int);
 private:
 	sf::RectangleShape drawQuad(float size, float y, float x, float color);
-	void drawFromWorld(sf::RenderWindow& window);
+	void drawFromWorld(sf::RenderTexture& texture);
 	std::vector<std::vector<float>> world;
 	int width;
 	int height;
-	const float gridSize = 20;
+	const float gridSize = 10;
+	sf::RenderTexture backGround;
 };	
 
 	

@@ -5,18 +5,27 @@ World::World(int width, int height) {
 	this->width = width;
 	this->world = std::vector<std::vector<float>>((int)(width/gridSize), std::vector<float>((int)(height/gridSize)));
 	this->world = NoiseMap::createNoiseMap(world);
+
+	this->backGround.create(width, height);
+
+	drawFromWorld(this->backGround);
+	
 }
 
 void World::drawWorld(sf::RenderWindow &window) {
-	drawFromWorld(window);
+	const sf::Texture& texture = backGround.getTexture();
+
+	// draw it to the window
+	sf::Sprite sprite(texture);
+	window.draw(sprite);
 }
 
-void World::drawFromWorld(sf::RenderWindow &window) {
+void World::drawFromWorld(sf::RenderTexture &texture) {
 	for (int y = 0; y < world.size(); y++)
 	{
 		for (int x = 0; x < world[y].size(); x++)
 		{
-			window.draw(drawQuad(gridSize, y * gridSize, x * gridSize, world[y][x]));
+			texture.draw(drawQuad(gridSize, y * gridSize, x * gridSize, world[y][x]));
 		}
 	}
 }
