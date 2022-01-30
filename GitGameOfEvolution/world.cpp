@@ -16,9 +16,7 @@ void World::drawFromWorld(sf::RenderWindow &window) {
 	{
 		for (int x = 0; x < world[y].size(); x++)
 		{
-			if (world[y][x] > 0.3f) {
-				window.draw(drawQuad(gridSize, y * gridSize, x * gridSize, world[y][x]));
-			}
+			window.draw(drawQuad(gridSize, y * gridSize, x * gridSize, world[y][x]));
 		}
 	}
 }

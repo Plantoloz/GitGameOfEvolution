@@ -9,7 +9,6 @@ std::vector<std::vector<float>> NoiseMap::createNoiseMap(std::vector<std::vector
 	{
 		for (size_t x = 0; x < world[y].size(); x++)
 		{
-			std::cout << rand() / float(RAND_MAX) << std::endl;
 			world[y][x] = rand() / float(RAND_MAX);
 		}
 	}
