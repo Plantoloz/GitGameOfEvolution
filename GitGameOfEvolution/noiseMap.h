@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <vector>
+#include "OpenSimplexNoise.h"
+
 class NoiseMap
 {
 public:

@@ -5,9 +5,10 @@
 int main()
 {
     int winHeight = 9*60;
-    int winLenght = 16*60;
-    sf::RenderWindow window(sf::VideoMode(winLenght, winHeight), "SFML works!", sf::Style::Close | sf::Style::Resize);
-    World world(winLenght, winHeight);
+    int winWidth = 16*60;
+    int gridSize = 5;
+    sf::RenderWindow window(sf::VideoMode(winWidth, winHeight), "SFML works!", sf::Style::Close | sf::Style::Resize);
+    World world(winWidth, winHeight, gridSize);
 
     while (window.isOpen())
     {
