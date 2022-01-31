@@ -28,7 +28,6 @@ void World::drawFromWorld(sf::RenderTexture &texture) {
 		{
 			float value = world[x][y];
 			sf::Color color;
-			/*
 			if (value >= 0.7f) {
 				color = sf::Color(value * 255.0f * 0.5f, value * 255.0f * 0.25f, 0);
 			}
@@ -38,13 +37,14 @@ void World::drawFromWorld(sf::RenderTexture &texture) {
 			else if (value >= 0.0f) {
 				color = sf::Color(0, value * 255.0f * 0.25f, value*255.0f*0.5f);
 			}
-			*/	
+			/*
 			if (value >= 0.5f) {
 				color = sf::Color(255, 255, 255);
 			}
 			else {
 				color = sf::Color(0, 0, 0);
 			}
+			*/	
 			
 			texture.draw(drawQuad(gridSize, x * gridSize, y * gridSize, color));		
 		}

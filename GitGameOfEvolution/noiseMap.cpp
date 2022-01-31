@@ -4,7 +4,7 @@ std::vector<std::vector<float>> NoiseMap::createNoiseMap(std::vector<std::vector
 	srand((unsigned int)time(NULL));
 	//std::srand(static_cast<unsigned int>(std::time(nullptr)));  
 	long seed = rand();
-	
+	OpenSimplex2S noise(seed);
 	for (size_t x = 0; x < world.size(); x++)
 	{
 		for (size_t y = 0; y < world[x].size(); y++)
@@ -12,10 +12,10 @@ std::vector<std::vector<float>> NoiseMap::createNoiseMap(std::vector<std::vector
 			// world[y][x] = rand() / float(RAND_MAX);
 			
 			double frequency = 5;
-			double value;
+			
 			double nx = (double)x / (double)world.size() * frequency;
 			double ny = (double)y / (double)world[x].size() * frequency;
-			value = OpenSimplex2S::OpenSimplex2S(seed).noise2(nx,ny);
+			double value = noise.noise2(nx, ny);
 			world[x][y] = (value + 1 ) / 2; // Convert to float between 1 and 0
 			/*
 			
@@ -25,5 +25,6 @@ std::vector<std::vector<float>> NoiseMap::createNoiseMap(std::vector<std::vector
 			*/
 		}
 	}
+	std::cout << "Done";
 	return world;
 }
