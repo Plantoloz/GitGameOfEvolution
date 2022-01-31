@@ -153,13 +153,13 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NoiseMap.cpp" />
-    <ClCompile Include="OpenSimplexNoise.cpp" />
+    <ClCompile Include="OpenSimplex2S.cpp" />
     <ClCompile Include="Species.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NoiseMap.h" />
-    <ClInclude Include="OpenSimplexNoise.h" />
+    <ClInclude Include="OpenSimplex2S.hpp" />
     <ClInclude Include="Species.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>

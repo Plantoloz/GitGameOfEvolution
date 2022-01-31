@@ -30,7 +30,7 @@
     <ClCompile Include="NoiseMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OpenSimplexNoise.cpp">
+    <ClCompile Include="OpenSimplex2S.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,7 +44,7 @@
     <ClInclude Include="NoiseMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="OpenSimplexNoise.h">
+    <ClInclude Include="OpenSimplex2S.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

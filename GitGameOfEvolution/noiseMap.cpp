@@ -3,19 +3,19 @@
 std::vector<std::vector<float>> NoiseMap::createNoiseMap(std::vector<std::vector<float>> world) {
 	srand((unsigned int)time(NULL));
 	//std::srand(static_cast<unsigned int>(std::time(nullptr)));  
-
+	long seed = rand();
 	
 	for (size_t x = 0; x < world.size(); x++)
 	{
 		for (size_t y = 0; y < world[x].size(); y++)
 		{
 			// world[y][x] = rand() / float(RAND_MAX);
-			OpenSimplexNoise::Noise noise(rand());
-			double frequency = 1000;
+			
+			double frequency = 5;
 			double value;
 			double nx = (double)x / (double)world.size() * frequency;
 			double ny = (double)y / (double)world[x].size() * frequency;
-			value = noise.eval(nx, ny);
+			value = OpenSimplex2S::OpenSimplex2S(seed).noise2(nx,ny);
 			world[x][y] = (value + 1 ) / 2; // Convert to float between 1 and 0
 			/*
 			

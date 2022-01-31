@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <vector>
-#include "OpenSimplexNoise.h"
+#include "OpenSimplex2S.hpp"
 
 class NoiseMap
 {
