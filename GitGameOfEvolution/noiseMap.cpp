@@ -11,7 +11,7 @@ std::vector<std::vector<float>> NoiseMap::createNoiseMap(std::vector<std::vector
 		{
 			// world[y][x] = rand() / float(RAND_MAX);
 			
-			double frequency = 5;
+			double frequency = 3.5;
 			
 			double nx = (double)x / (double)world.size() * frequency;
 			double ny = (double)y / (double)world[x].size() * frequency;

@@ -10,7 +10,6 @@ World::World(int width, int height, int gridSize) {
 	this->backGround.create(width, height);
 
 	drawFromWorld(this->backGround);
-	
 }
 
 void World::drawWorld(sf::RenderWindow &window) {
@@ -28,14 +27,14 @@ void World::drawFromWorld(sf::RenderTexture &texture) {
 		{
 			float value = world[x][y];
 			sf::Color color;
-			if (value >= 0.7f) {
-				color = sf::Color(value * 255.0f * 0.5f, value * 255.0f * 0.25f, 0);
+			if (value >= 0.8f) {
+				color = sf::Color(value * 255.0f * 1.0f, value * 255.0f * 0.5f, 0);
 			}
 			else if(value >= 0.3f) {
-				color = sf::Color(value * 255.0f * 0.25f, value * 255.0f * 0.5f, 0);
+				color = sf::Color(value * 255.0f * 0.5f, value * 255.0f * 1.0f, 0);
 			}
 			else if (value >= 0.0f) {
-				color = sf::Color(0, value * 255.0f * 0.25f, value*255.0f*0.5f);
+				color = sf::Color(0, value * 255.0f * 0.5f, value*255.0f*1.0f);
 			}
 			/*
 			if (value >= 0.5f) {
