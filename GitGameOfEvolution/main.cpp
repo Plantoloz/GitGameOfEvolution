@@ -37,7 +37,7 @@ int main()
         // Function to Generate World. A Class to simulate the simulation
         
         // Function to Display World
-        world.drawWorld(window);
+        world.simulateWorld(window);
         
 
         window.display();

@@ -3,15 +3,14 @@
 #include <iostream>
 
 #include "NoiseMap.h"
+#include "Simulator.h"
 
 class World
 {
 public: 
-	void drawWorld(sf::RenderWindow&);
 	World(int width, int height,int gridSize);
+	void simulateWorld(sf::RenderWindow& window);
 private:
-	sf::RectangleShape drawQuad(float size, float x, float y, sf::Color color);
-	void drawFromWorld(sf::RenderTexture& texture);
 	std::vector<std::vector<float>> world;
 	int width;
 	int height;
