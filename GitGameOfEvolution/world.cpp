@@ -8,9 +8,16 @@ World::World(int width, int height, int gridSize) {
 	this->world = NoiseMap::createNoiseMap(world);
 
 	this->backGround.create(width, height);
+	creatureVector.push_back(Creature(34, 400, 5, 5, sf::Color(1, 1, 1)));
+	creatureVector.push_back(Creature(40, 400, 5, 5, sf::Color(1, 1, 1)));
+	creatureVector.push_back(Creature(600, 300, 5, 5, sf::Color(1, 1, 1)));
+	creatureVector.push_back(Creature(500, 400, 5, 5, sf::Color(1, 1, 1)));
 }
 
-void World::simulateWorld(sf::RenderWindow& window) {
-	Simulator::drawWorld(window, gridSize, backGround, world);
+void World::drawWorld(sf::RenderWindow& window) {
+	MapCreator::drawMap(window, gridSize, world);
+	CreatureManager::drawCreatures(window, gridSize, creatureVector, width , height);
 }
+
+
 

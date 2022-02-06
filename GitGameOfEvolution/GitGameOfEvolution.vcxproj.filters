@@ -21,9 +21,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Species.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="World.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -33,10 +30,13 @@
     <ClCompile Include="OpenSimplex2S.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Simulator.cpp">
+    <ClCompile Include="MapCreator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Creature.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CreatureManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,10 +50,13 @@
     <ClInclude Include="OpenSimplex2S.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Simulator.h">
+    <ClInclude Include="MapCreator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Creature.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CreatureManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
