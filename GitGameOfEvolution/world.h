@@ -12,12 +12,11 @@ public:
 	World(int width, int height,int gridSize);
 	void drawWorld(sf::RenderWindow& window);
 private:
-	std::vector<std::vector<float>> world;
-	int width;
-	int height;
-	int gridSize;
-	sf::RenderTexture backGround;
-	std::vector<Creature> creatureVector;
+	std::vector<std::vector<float>> _world;
+	int _width;
+	int _height;
+	int _gridSize;
+	std::vector<Creature> _creatureVector;
 };	
 
 	
