@@ -34,6 +34,10 @@ void CreatureManager::createCreature(std::vector<Creature>& creatureVector, floa
 	creatureVector.push_back(Creature(x, y, color));
 }
 
+void CreatureManager::createCreatureByBlueprint(std::vector<Creature>& creatureVector, Creature creature) {
+	creatureVector.push_back(creature);
+}
+
 void CreatureManager::removeCreature(std::vector<Creature>& creatureVector, int index) {
 	creatureVector.erase(creatureVector.begin() + index);
 }
