@@ -9,7 +9,7 @@ void CreatureManager::drawCreatures(sf::RenderWindow& window, int gridSize, std:
 
 	for (int i = 0; i < creatureVector.size(); i++)
 	{
-		drawnCreature.draw(drawCreature(1.5*gridSize, creatureVector[i].PosX, creatureVector[i].PosY, creatureVector[i].Color));
+		drawnCreature.draw(drawCreature(10, creatureVector[i].PosX, creatureVector[i].PosY, creatureVector[i].Color));
 	}
 	
 	// Convert
@@ -30,11 +30,8 @@ sf::RectangleShape CreatureManager::drawCreature(float size, float x, float y, s
 
 #pragma region InfluenceCreature
 
-void CreatureManager::createCreature(std::vector<Creature>& creatureVector) {
-	creatureVector.push_back(Creature(34, 400, sf::Color(1, 1, 1)));
-	creatureVector.push_back(Creature(40, 300, sf::Color(255, 1, 1)));
-	creatureVector.push_back(Creature(600, 300, sf::Color(1, 1, 255)));
-	creatureVector.push_back(Creature(500, 400, sf::Color(1, 125, 1)));
+void CreatureManager::createCreature(std::vector<Creature>& creatureVector, float x, float y, sf::Color color) {
+	creatureVector.push_back(Creature(x, y, color));
 }
 
 void CreatureManager::removeCreature(std::vector<Creature>& creatureVector, int index) {
