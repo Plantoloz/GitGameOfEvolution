@@ -6,7 +6,7 @@
 class MapCreator
 {
 public:
-	static void drawMap(sf::RenderWindow& window, int gridSize,
+	static void drawMap(sf::RenderTexture& backGround, int gridSize,
 		 std::vector<std::vector<float>>& world);
 private:
 	static sf::RectangleShape drawQuad(float size, float x, float y, sf::Color color);
