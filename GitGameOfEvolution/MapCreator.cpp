@@ -1,16 +1,19 @@
 #include "MapCreator.h"
 
-void MapCreator::drawMap(sf::RenderWindow& window, int gridSize, std::vector<std::vector<float>>& world) {
+sf::Sprite MapCreator::drawMap(int gridSize, std::vector<std::vector<float>>& world) {
 
 	sf::RenderTexture backGround;
 	backGround.create(world.size() * gridSize, world[0].size()*gridSize);
 	drawFromMap(backGround, world, gridSize);
-	const sf::Texture& texture = backGround.getTexture();
-
+	const sf::Texture texture = backGround.getTexture();
+	
 	// draw it to the window
-	sf::Sprite sprite(texture);
-	window.draw(sprite);
+	return texture;
+	//sf::Sprite worldSprite(texture);
+	//window.draw(worldSprite);
+	
 }
+
 //Drawing every Tile with a color 
 void MapCreator::drawFromMap(sf::RenderTexture& texture, std::vector<std::vector<float>>& world, int gridSize) {
 	for (int x = 0; x < world.size(); x++)

@@ -16,7 +16,9 @@ private:
 	int _width;
 	int _height;
 	int _gridSize;
+	sf::Sprite _worldSprite;
 	std::vector<Creature> _creatureVector;
+	sf::Texture _worldTexture;
 };	
 
 	

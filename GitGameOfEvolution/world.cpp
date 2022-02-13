@@ -6,6 +6,7 @@ World::World(int width, int height, int gridSize) {
 	this->_gridSize = gridSize;
 	this->_world = std::vector<std::vector<float>>((int)(width/gridSize), std::vector<float>((int)(height/gridSize)));
 	this->_world = NoiseMap::createNoiseMap(_world);
+	this->_worldSprite = MapCreator::drawMap(_worldTexture, _gridSize, _world);
 
 	srand((unsigned int)time(NULL));
 	for (int i = 0; i < 100; i++) {
@@ -14,7 +15,9 @@ World::World(int width, int height, int gridSize) {
 }
 
 void World::drawWorld(sf::RenderWindow& window) {
-	MapCreator::drawMap(window, _gridSize, _world);
+	CreatureManager::moveAllCreature(_creatureVector);
+	
+	window.draw(_worldSprite);
 	CreatureManager::drawCreatures(window, _gridSize, _creatureVector, _width , _height);
 }
 

@@ -6,6 +6,7 @@ class Creature
 {
 public:
 	Creature(float posX, float posY, sf::Color color);
+	void move(float amountX, float amountY);
 	//float Strength;
 	//float Speed;
 	float Hunger = 1;
