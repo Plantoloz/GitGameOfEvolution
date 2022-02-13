@@ -1,7 +1,6 @@
 #include "NoiseMap.h"
 
 std::vector<std::vector<float>> NoiseMap::createNoiseMap(std::vector<std::vector<float>> world) {
-	srand((unsigned int)time(NULL));
 	//std::srand(static_cast<unsigned int>(std::time(nullptr)));  
 	long seed = rand();
 	OpenSimplex2S noise(seed);

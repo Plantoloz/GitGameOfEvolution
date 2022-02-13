@@ -8,13 +8,13 @@ World::World(int width, int height, int gridSize) {
 	this->_world = NoiseMap::createNoiseMap(_world);
 	MapCreator::drawMap(backGround, _gridSize, _world);
 
-	srand((unsigned int)time(NULL));
 	for (int i = 0; i < 100; i++) {
-		CreatureManager::createCreature(_creatureVector, (float)rand() / RAND_MAX * width, (float)rand() / RAND_MAX * height, sf::Color(255, 1, 1));
+		CreatureManager::createCreature(_creatureVector, (float)rand() / RAND_MAX * width, (float)rand() / RAND_MAX * height, sf::Color(rand(), rand(), rand()));
 	}
 }
 
 void World::drawWorld(sf::RenderWindow& window) {
+	CreatureManager::moveAllCreature(_creatureVector);
 	sf::Sprite sprite(backGround.getTexture());
 	window.draw(sprite);
 
