@@ -30,6 +30,14 @@ sf::RectangleShape CreatureManager::drawCreature(float size, float x, float y, s
 
 #pragma region InfluenceCreature
 
+void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector) {
+	srand((unsigned int)time(NULL));
+	
+	for (int i = 0; i < creatureVector.size(); i++) {
+		creatureVector[i].move(((float)rand() / RAND_MAX * 2 - 1)*1, ((float)rand() / RAND_MAX * 2 - 1) * 1);
+	}
+}
+
 void CreatureManager::createCreature(std::vector<Creature>& creatureVector, float x, float y, sf::Color color) {
 	creatureVector.push_back(Creature(x, y, color));
 }
