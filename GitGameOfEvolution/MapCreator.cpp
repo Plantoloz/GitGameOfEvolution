@@ -39,7 +39,7 @@ void MapCreator::drawFromMap(sf::RenderTexture& texture, std::vector<std::vector
 				color = sf::Color(194, 178, 129);
 			}
 			// Water
-			else if (value >= 0.3f) {
+			else if (value >= 0.2f) {
 				color = sf::Color(9, 82, 198);
 			}
 			else if (value >= 0.0f) {
