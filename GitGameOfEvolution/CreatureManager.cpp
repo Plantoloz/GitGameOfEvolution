@@ -50,21 +50,17 @@ void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector) {
 	}
 	for (int j = 0; j < creatureVector.size(); j++) {
 		Creature& cre1 = creatureVector[j];
-		for (int y = 0; y < creatureVector.size(); y++) {
+		for (int y = j+1; y < creatureVector.size(); y++) {
 			Creature& cre2 = creatureVector[y];
 			// Circle tracking
 			if (pow(pow(cre1.PosX - cre2.PosX, 2) + 
 					pow(cre1.PosY - cre2.PosY, 2), 0.5) 
-					<= (cre1.Size + cre2.Size) / 2 
-				&& y != j) {
+					<= (cre1.Size + cre2.Size) / 2) {
 
 				// Changes vector!
 				killCreature(creatureVector, j, y);
 				// Exception, adjust to the changing vector
-				if (j > y) {
-					j -= 1;
-					cre1 = creatureVector[j];
-				}
+				
 				y -= 1;
 			}
 		}
