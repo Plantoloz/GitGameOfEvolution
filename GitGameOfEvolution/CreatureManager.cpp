@@ -46,7 +46,30 @@ void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector) {
 	
 	for (int i = 0; i < creatureVector.size(); i++) {
 		creatureVector[i].move(((float)rand() / RAND_MAX * 2 - 1)+0.5, ((float)rand() / RAND_MAX * 2 - 1) * 1);
+		
 	}
+	for (int j = 0; j < creatureVector.size(); j++) {
+		Creature& cre1 = creatureVector[j];
+		for (int y = 0; y < creatureVector.size(); y++) {
+			Creature& cre2 = creatureVector[y];
+			// Circle tracking
+			if (pow(pow(cre1.PosX - cre2.PosX, 2) + 
+					pow(cre1.PosY - cre2.PosY, 2), 0.5) 
+					<= (cre1.Size + cre2.Size) / 2 
+				&& y != j) {
+
+				// Changes vector!
+				killCreature(creatureVector, j, y);
+				// Exception, adjust to the changing vector
+				if (j > y) {
+					j -= 1;
+					cre1 = creatureVector[j];
+				}
+				y -= 1;
+			}
+		}
+	}
+	
 }
 
 void CreatureManager::createCreature(std::vector<Creature>& creatureVector, float x, float y, sf::Color color) {
@@ -59,6 +82,12 @@ void CreatureManager::createCreatureByBlueprint(std::vector<Creature>& creatureV
 
 void CreatureManager::removeCreature(std::vector<Creature>& creatureVector, int index) {
 	creatureVector.erase(creatureVector.begin() + index);
+}
+
+// Changes vector!
+void CreatureManager::killCreature(std::vector<Creature>& creatureVector, int indexKiller, int indexToKill ) {
+	creatureVector[indexKiller].Hunger += creatureVector[indexToKill].Hunger;
+	removeCreature(creatureVector, indexToKill);
 }
 
 #pragma endregion InfluenceCreature

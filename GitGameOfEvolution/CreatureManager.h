@@ -11,5 +11,6 @@ public:
 	void static moveAllCreature(std::vector<Creature>& creatureVector);
 private:
 	sf::RectangleShape static drawCreature(float size, float x, float y, sf::Color color);
-	void removeCreature(std::vector<Creature>& creatureVector, int index);
+	void static removeCreature(std::vector<Creature>& creatureVector, int index);
+	void static killCreature(std::vector<Creature>& creatureVector, int indexKiller, int indexToKill);
 };
