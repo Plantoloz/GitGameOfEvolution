@@ -6,7 +6,7 @@ int main()
 {
     int winHeight = 9*60;
     int winWidth = 16*60;
-    int gridSize = 5;
+    int gridSize = 20;
     srand((unsigned int)time(NULL));
     sf::RenderWindow window(sf::VideoMode(winWidth, winHeight), "SFML works!", sf::Style::Close | sf::Style::Resize);
     World world(winWidth, winHeight, gridSize);

@@ -9,7 +9,19 @@ void CreatureManager::drawCreatures(sf::RenderWindow& window, int gridSize, std:
 
 	for (int i = 0; i < creatureVector.size(); i++)
 	{
-		drawnCreature.draw(drawCreature(10, creatureVector[i].PosX, creatureVector[i].PosY, creatureVector[i].Color));
+		if (creatureVector[i].PosX > width - creatureVector[i].Size) {
+			creatureVector[i].PosX = width - creatureVector[i].Size;
+		}
+		if (creatureVector[i].PosY > height - creatureVector[i].Size) {
+			creatureVector[i].PosY = height - creatureVector[i].Size;
+		}
+		if (creatureVector[i].PosX < 0) {
+			creatureVector[i].PosX = 0;
+		}
+		if (creatureVector[i].PosY < 0) {
+			creatureVector[i].PosY = 0;
+		}
+		drawnCreature.draw(drawCreature(creatureVector[i].Size, creatureVector[i].PosX, creatureVector[i].PosY, creatureVector[i].Color));
 	}
 	
 	// Convert
@@ -33,12 +45,12 @@ sf::RectangleShape CreatureManager::drawCreature(float size, float x, float y, s
 void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector) {
 	
 	for (int i = 0; i < creatureVector.size(); i++) {
-		creatureVector[i].move(((float)rand() / RAND_MAX * 2 - 1)*1, ((float)rand() / RAND_MAX * 2 - 1) * 1);
+		creatureVector[i].move(((float)rand() / RAND_MAX * 2 - 1)+0.5, ((float)rand() / RAND_MAX * 2 - 1) * 1);
 	}
 }
 
 void CreatureManager::createCreature(std::vector<Creature>& creatureVector, float x, float y, sf::Color color) {
-	creatureVector.push_back(Creature(x, y, color));
+	creatureVector.push_back(Creature(15,x, y, color));
 }
 
 void CreatureManager::createCreatureByBlueprint(std::vector<Creature>& creatureVector, Creature creature) {
