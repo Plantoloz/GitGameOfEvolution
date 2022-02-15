@@ -45,9 +45,9 @@ sf::RectangleShape CreatureManager::drawCreature(float size, float x, float y, s
 void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector) {
 	
 	for (int i = 0; i < creatureVector.size(); i++) {
-		creatureVector[i].move(((float)rand() / RAND_MAX * 2 - 1)+0.5, ((float)rand() / RAND_MAX * 2 - 1) * 1);
-		
+		creatureVector[i].move(((float)rand() / RAND_MAX * 2 - 1)+0.5, ((float)rand() / RAND_MAX * 2 - 1) + 0.5);
 	}
+
 	for (int j = 0; j < creatureVector.size(); j++) {
 		Creature& cre1 = creatureVector[j];
 		for (int y = j+1; y < creatureVector.size(); y++) {
@@ -60,7 +60,6 @@ void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector) {
 				// Changes vector!
 				killCreature(creatureVector, j, y);
 				// Exception, adjust to the changing vector
-				
 				y -= 1;
 			}
 		}
