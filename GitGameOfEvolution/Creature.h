@@ -12,8 +12,8 @@ public:
 	float Hunger = 1;
 	float PosX;
 	float PosY;
-	//float Size;
-	//sf::Color Color;
+	float Size;
+	sf::Color Color;
 	Species& Specie;
 private:
 	

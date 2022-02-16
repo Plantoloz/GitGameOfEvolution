@@ -1,7 +1,7 @@
 #include "Creature.h"
 Creature::Creature(Species& species, float x, float y) : Specie(species) {
-	//this->Color = species.Color;
-	//this->Size = species.Size;
+	this->Color = species.Color;
+	this->Size = species.Size;
 	this->PosX = x;
 	this->PosY = y;
 }
