@@ -45,7 +45,7 @@ sf::RectangleShape CreatureManager::drawCreature(float size, float x, float y, s
 void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector) {
 	
 	for (int i = 0; i < creatureVector.size(); i++) {
-		creatureVector[i].move(((float)rand() / RAND_MAX * 2 - 1)+0.5, ((float)rand() / RAND_MAX * 2 - 1) + 0.5);
+		creatureVector[i].move(((float)rand() / RAND_MAX * 2 - 1), ((float)rand() / RAND_MAX * 2 - 1) );
 	}
 
 	for (int j = 0; j < creatureVector.size(); j++) {
@@ -58,7 +58,7 @@ void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector) {
 					<= (cre1.Size + cre2.Size) / 2) {
 
 				// Changes vector!
-				killCreature(creatureVector, j, y);
+				attackCreature(creatureVector, j, y);
 				// Exception, adjust to the changing vector
 				y -= 1;
 			}
@@ -67,14 +67,12 @@ void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector) {
 	
 }
 
-void CreatureManager::createSpecies(std::vector<Creature>& speciesVector, sf::Color color, float size) {
-	speciesVector.push_back(Creature(size, color));
+void CreatureManager::createSpecies(std::vector<Species>& speciesVector, sf::Color color, float size) {
+	speciesVector.push_back(Species(size, color));
 }
 
-void CreatureManager::createCreature(std::vector<Creature>& creatureVector, Creature creature, float x, float y) {
-	creature.PosX = x;
-	creature.PosY = y;
-	creatureVector.push_back(creature);
+void CreatureManager::createCreature(std::vector<Creature>& creatureVector, Species specie, float x, float y) {
+	creatureVector.push_back(Creature(specie, x, y));
 }
 
 void CreatureManager::removeCreature(std::vector<Creature>& creatureVector, int index) {
@@ -82,8 +80,8 @@ void CreatureManager::removeCreature(std::vector<Creature>& creatureVector, int 
 }
 
 // Changes vector!
-void CreatureManager::killCreature(std::vector<Creature>& creatureVector, int indexKiller, int indexToKill ) {
-	creatureVector[indexKiller].Hunger += creatureVector[indexToKill].Hunger;
+void CreatureManager::attackCreature(std::vector<Creature>& creatureVector, int indexKiller, int indexToKill ) {
+	createCreature(creatureVector, creatureVector[indexKiller].Specie, creatureVector[indexToKill].PosX + (float)rand()/RAND_MAX, creatureVector[indexToKill].PosX + (float)rand()/RAND_MAX);
 	removeCreature(creatureVector, indexToKill);
 }
 

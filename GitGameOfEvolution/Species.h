@@ -1,14 +1,12 @@
 #pragma once
 #include <iostream>
-
-
-using namespace std;
+#include <SFML/Graphics.hpp>
 
 class Species
 {
-public: 
-	Species(int);
-	void exists();
-private: 
-	int index;
+public:
+	Species(float size, sf::Color color);
+	float Size;
+	sf::Color Color;
+private:
 };

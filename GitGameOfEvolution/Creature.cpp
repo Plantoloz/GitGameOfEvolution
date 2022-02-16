@@ -1,7 +1,9 @@
 #include "Creature.h"
-Creature::Creature(float size, sf::Color color) {
-	this->Color = color;
-	this->Size = size;
+Creature::Creature(Species& species, float x, float y) : Specie(species) {
+	//this->Color = species.Color;
+	//this->Size = species.Size;
+	this->PosX = x;
+	this->PosY = y;
 }
 
 void Creature::move(float amountX, float amountY) {
