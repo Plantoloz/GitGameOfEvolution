@@ -17,7 +17,8 @@ private:
 	int _height;
 	int _gridSize;
 	std::vector<Creature> _creatureVector;
-	sf::RenderTexture backGround;
+	std::vector<Creature> _speciesVector;
+	sf::RenderTexture _backGround;
 };	
 
 	

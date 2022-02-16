@@ -1,7 +1,5 @@
 #include "Creature.h"
-Creature::Creature(float size, float posX, float posY, sf::Color color) {
-	this->PosX = posX;
-	this->PosY = posY;
+Creature::Creature(float size, sf::Color color) {
 	this->Color = color;
 	this->Size = size;
 }

@@ -67,11 +67,13 @@ void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector) {
 	
 }
 
-void CreatureManager::createCreature(std::vector<Creature>& creatureVector, float x, float y, sf::Color color) {
-	creatureVector.push_back(Creature(15,x, y, color));
+void CreatureManager::createSpecies(std::vector<Creature>& speciesVector, sf::Color color, float size) {
+	speciesVector.push_back(Creature(size, color));
 }
 
-void CreatureManager::createCreatureByBlueprint(std::vector<Creature>& creatureVector, Creature creature) {
+void CreatureManager::createCreature(std::vector<Creature>& creatureVector, Creature creature, float x, float y) {
+	creature.PosX = x;
+	creature.PosY = y;
 	creatureVector.push_back(creature);
 }
 
