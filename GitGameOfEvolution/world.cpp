@@ -8,7 +8,7 @@ World::World(int width, int height, int gridSize) {
 	this->_world = NoiseMap::createNoiseMap(_world);
 	MapCreator::drawMap(_backGround, _gridSize, _world);
 	for (int y = 0; y < 4; y++) {
-		CreatureManager::createSpecies(_speciesVector, sf::Color(rand(), rand(), rand()), 15);
+		CreatureManager::createSpecies(_speciesVector, sf::Color(rand(), rand(), rand()), 15, y);
 		for (int i = 0; i < 25; i++) {
 			CreatureManager::createCreature(_creatureVector, _speciesVector[y], (float)rand() / RAND_MAX * width, (float)rand() / RAND_MAX * height);
 		}

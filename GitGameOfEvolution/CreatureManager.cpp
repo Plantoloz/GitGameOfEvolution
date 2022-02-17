@@ -53,22 +53,25 @@ void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector) {
 		for (int y = j+1; y < creatureVector.size(); y++) {
 			Creature& cre2 = creatureVector[y];
 			// Circle tracking
-			if (pow(pow(cre1.PosX - cre2.PosX, 2) + 
-					pow(cre1.PosY - cre2.PosY, 2), 0.5) 
+			float x1 = cre1.PosX + cre1.Size / 2;
+			float y1 = cre1.PosY + cre1.Size / 2;
+			float x2 = cre2.PosX + cre2.Size / 2;
+			float y2 = cre2.PosY + cre2.Size / 2;
+			if (pow(pow(x1 - x2, 2) + 
+					pow(y1 - y2, 2), 0.5) 
 					<= (cre1.Size + cre2.Size) / 2) {
 
-				// Changes vector!
-				attackCreature(creatureVector, j, y);
-				// Exception, adjust to the changing vector
-				y -= 1;
+				// Changes vector and y
+				interactCreature(creatureVector, j, y);
+				
 			}
 		}
 	}
 	
 }
 
-void CreatureManager::createSpecies(std::vector<Species>& speciesVector, sf::Color color, float size) {
-	speciesVector.push_back(Species(size, color));
+void CreatureManager::createSpecies(std::vector<Species>& speciesVector, sf::Color color, float size, int number) {
+	speciesVector.push_back(Species(size, color, number));
 }
 
 void CreatureManager::createCreature(std::vector<Creature>& creatureVector, Species& specie, float x, float y) {
@@ -80,10 +83,14 @@ void CreatureManager::removeCreature(std::vector<Creature>& creatureVector, int 
 }
 
 // Changes vector!
-void CreatureManager::attackCreature(std::vector<Creature>& creatureVector, int indexKiller, int indexToKill ) {
-	//std::cout << creatureVector.size() << std::endl;
-	createCreature(creatureVector, creatureVector[indexKiller].Specie, creatureVector[indexToKill].PosX + (float)rand()/RAND_MAX, creatureVector[indexToKill].PosX + (float)rand()/RAND_MAX);
-	removeCreature(creatureVector, indexToKill);
+void CreatureManager::interactCreature(std::vector<Creature>& creatureVector, int indexKiller, int& indexToKill ) {
+	//std::cout << creatureVector[indexKiller].Specie.Number << creatureVector[indexToKill].Specie.Number << std::endl;
+	if (creatureVector[indexKiller].Specie.Number != creatureVector[indexToKill].Specie.Number) {
+		createCreature(creatureVector, creatureVector[indexKiller].Specie, creatureVector[indexToKill].PosX + (float)rand() / RAND_MAX * 2 - 1, creatureVector[indexToKill].PosY + (float)rand() / RAND_MAX * 2 - 1);
+		removeCreature(creatureVector, indexToKill);
+		// Exception, adjust to the changing vector
+		indexToKill -= 1;
+	}
 }
 
 #pragma endregion InfluenceCreature
