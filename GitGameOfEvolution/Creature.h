@@ -14,7 +14,7 @@ public:
 	float PosY;
 	float Size;
 	sf::Color Color;
-	Species& Specie;
+	Species Specie;
 private:
 	
 };

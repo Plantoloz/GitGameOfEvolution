@@ -81,6 +81,7 @@ void CreatureManager::removeCreature(std::vector<Creature>& creatureVector, int 
 
 // Changes vector!
 void CreatureManager::attackCreature(std::vector<Creature>& creatureVector, int indexKiller, int indexToKill ) {
+	//std::cout << creatureVector.size() << std::endl;
 	createCreature(creatureVector, creatureVector[indexKiller].Specie, creatureVector[indexToKill].PosX + (float)rand()/RAND_MAX, creatureVector[indexToKill].PosX + (float)rand()/RAND_MAX);
 	removeCreature(creatureVector, indexToKill);
 }
