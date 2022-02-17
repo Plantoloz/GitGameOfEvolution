@@ -71,7 +71,7 @@ void CreatureManager::createSpecies(std::vector<Species>& speciesVector, sf::Col
 	speciesVector.push_back(Species(size, color));
 }
 
-void CreatureManager::createCreature(std::vector<Creature>& creatureVector, Species specie, float x, float y) {
+void CreatureManager::createCreature(std::vector<Creature>& creatureVector, Species& specie, float x, float y) {
 	creatureVector.push_back(Creature(specie, x, y));
 }
 
