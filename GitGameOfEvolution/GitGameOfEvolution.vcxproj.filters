@@ -42,6 +42,9 @@
     <ClCompile Include="Species.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Vegetable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="World.h">
@@ -63,6 +66,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Species.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vegetable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

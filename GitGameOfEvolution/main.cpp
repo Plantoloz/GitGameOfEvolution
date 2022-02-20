@@ -8,7 +8,7 @@ int main()
     int winWidth = 16*60;
     int gridSize = 10;
     sf::Clock deltaClock;
-
+    int deltaTime = 0;
     srand((unsigned int)time(NULL));
     sf::RenderWindow window(sf::VideoMode(winWidth, winHeight), "SFML works!", sf::Style::Close | sf::Style::Resize);
     World world(winWidth, winHeight, gridSize);
@@ -37,10 +37,14 @@ int main()
 
         window.clear();
 
-        sf::Time deltaTime = deltaClock.restart();
-        
+        deltaTime += deltaClock.restart().asMilliseconds();
+        int framesPerTick = 60;
+        if (deltaTime >= 1000/ framesPerTick) {
+            deltaTime -= 1000 / framesPerTick;
+            world.simulateWorld(window);
+        }
         // Simulate 1 Move
-        world.simulateWorld(window, deltaTime);
+        
         
         // Function to Display World
         world.drawWorld(window);

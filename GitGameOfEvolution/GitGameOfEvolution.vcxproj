@@ -158,6 +158,7 @@
     <ClCompile Include="OpenSimplex2S.cpp" />
     <ClCompile Include="MapCreator.cpp" />
     <ClCompile Include="Species.cpp" />
+    <ClCompile Include="Vegetable.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +168,7 @@
     <ClInclude Include="OpenSimplex2S.hpp" />
     <ClInclude Include="MapCreator.h" />
     <ClInclude Include="Species.h" />
+    <ClInclude Include="Vegetable.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
