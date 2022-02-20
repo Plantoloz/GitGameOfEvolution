@@ -11,8 +11,10 @@ class World
 public: 
 	World(int width, int height,int gridSize);
 	void drawWorld(sf::RenderWindow& window);
+	void simulateWorld(sf::RenderWindow& window, sf::Time deltaTime);
 private:
-	std::vector<std::vector<float>> _world;
+	std::vector<std::vector<float>> _worldMap;
+	std::vector<std::vector<float>> _temperatureMap;
 	int _width;
 	int _height;
 	int _gridSize;

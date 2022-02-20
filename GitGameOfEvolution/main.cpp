@@ -7,6 +7,8 @@ int main()
     int winHeight = 9*60;
     int winWidth = 16*60;
     int gridSize = 20;
+    sf::Clock deltaClock;
+
     srand((unsigned int)time(NULL));
     sf::RenderWindow window(sf::VideoMode(winWidth, winHeight), "SFML works!", sf::Style::Close | sf::Style::Resize);
     World world(winWidth, winHeight, gridSize);
@@ -35,13 +37,16 @@ int main()
 
         window.clear();
 
-        // Function to Generate World. A Class to simulate the simulation
+        sf::Time deltaTime = deltaClock.restart();
+        
+        // Simulate 1 Move
+        world.simulateWorld(window, deltaTime);
         
         // Function to Display World
         world.drawWorld(window);
-        
 
         window.display();
+
     }
 
     return 0;

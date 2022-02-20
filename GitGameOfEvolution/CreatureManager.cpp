@@ -42,12 +42,13 @@ sf::RectangleShape CreatureManager::drawCreature(float size, float x, float y, s
 
 #pragma region InfluenceCreature
 
-void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector) {
+void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector, sf::Time deltaTime) {
 	
 	for (int i = 0; i < creatureVector.size(); i++) {
-		creatureVector[i].move(((float)rand() / RAND_MAX * 2 - 1), ((float)rand() / RAND_MAX * 2 - 1) );
+		creatureVector[i].move(((float)rand() / RAND_MAX * 2 - 1)*(float)deltaTime.asMilliseconds()/10, ((float)rand() / RAND_MAX * 2 - 1) * (float)deltaTime.asMilliseconds()/10);
 	}
 
+	// Check for Hitbox
 	for (int j = 0; j < creatureVector.size(); j++) {
 		Creature& cre1 = creatureVector[j];
 		for (int y = j+1; y < creatureVector.size(); y++) {
