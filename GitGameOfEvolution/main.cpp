@@ -6,7 +6,7 @@ int main()
 {
     int winHeight = 9*60;
     int winWidth = 16*60;
-    int gridSize = 20;
+    int gridSize = 10;
     sf::Clock deltaClock;
 
     srand((unsigned int)time(NULL));

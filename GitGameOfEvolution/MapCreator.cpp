@@ -13,7 +13,8 @@ void MapCreator::drawFromMap(sf::RenderTexture& texture, std::vector<std::vector
 		for (int y = 0; y < worldMap[y].size(); y++)
 		{
 			float value = worldMap[x][y];
-			float tmp = -(temperatureMap[x][y]*60-30);
+			float tmp = 
+				(temperatureMap[x][y]*60-30);
 			sf::Color color;
 			// Mountain
 			if (value >= 0.9f) {
@@ -44,8 +45,8 @@ void MapCreator::drawFromMap(sf::RenderTexture& texture, std::vector<std::vector
 			}
 			// Water
 			else if (value >= 0.2f) {
-				if (tmp >= 0) {
-					tmp = 0;
+				if (tmp >= 9) {
+					tmp = 9;
 				}
 				color = sf::Color(9 - tmp, 82, 198);
 			}
