@@ -69,12 +69,7 @@ void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector, std
 		}
 	}
 	#pragma endregion ManagePlants
-
 	for (int i = 0; i < creatureVector.size(); i++) {
-		int coordX = (int)((int)creatureVector[i].PosX / gridSize);
-		if (coordX == width / gridSize) { coordX--; }
-		int coordY = (int)((int)creatureVector[i].PosY / gridSize);
-		if (coordY == height / gridSize) { coordY--; }
 		// Search for food & Best living Area
 		float moveX = ((float)rand() / RAND_MAX * 2 - 1) ;
 		float moveY = ((float)rand() / RAND_MAX * 2 - 1) ;
@@ -102,27 +97,31 @@ void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector, std
 
 		// Spawn Offspring
 		if (creatureVector[i].Hunger >= 1.5) {
-			std::cout << "ate" << creatureVector.size() << " " << i << " " << creatureVector[i].Size << std::endl;
 			createCreature(creatureVector, creatureVector[i].Specie, creatureVector[i].PosX + (float)rand() / RAND_MAX * 2 * 10, creatureVector[i].PosY + (float)rand() / RAND_MAX * 2 * 10);
 			
 			creatureVector[i].Hunger -= 0.5;
 		}
-		// Adjust Hunger
+		// Adjust Hunger && Erzeugt gelegentlich out of bounce error. Konnte nicht wieder reproduziert werden
+		int coordX = (int)((int)creatureVector[i].PosX / gridSize);
+		if (coordX == width / gridSize) { coordX--; }
+		int coordY = (int)((int)creatureVector[i].PosY / gridSize);
+		if (coordY == height / gridSize) { coordY--; }
+		//std::cout << coordX << " " << temperatureMap.size() << std::endl;
 		float discr = 0.3;
+
 		if (creatureVector[i].Specie.FavTemp > temperatureMap[coordX][coordY] + discr || creatureVector[i].Specie.FavTemp < temperatureMap[coordX][coordY] - discr) {
 			creatureVector[i].Hunger -= 0.001 * dt;
 		}
 		if (creatureVector[i].Specie.FavElev > worldMap[coordX][coordY] + discr || creatureVector[i].Specie.FavElev < worldMap[coordX][coordY] - discr) {
 			creatureVector[i].Hunger -= 0.01 * dt;
 		}
+
 		// Kill if no Food
 		if (creatureVector[i].Hunger <= 0) {
-			std::cout << vegetableVector.size()  << "ded" << creatureVector.size() << " " << i << " " << creatureVector[i].Size << std::endl;
 			removeCreature(creatureVector, i);
 			continue;
 		}
 	}
-	std::cout << "loop1" << std::endl;
 	// Check for Hitbox
 	for (int j = 0; j < creatureVector.size(); j++) {
 		// Creatures
