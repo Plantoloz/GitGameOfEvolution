@@ -48,18 +48,21 @@ sf::RectangleShape CreatureManager::drawCreature(float size, float x, float y, s
 
 #pragma region InfluenceCreature
 
-void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector, std::vector<Vegetable>& vegetableVector, int width, int height, std::vector<std::vector<float>> worldMap, std::vector<std::vector<float>> temperatureMap, int gridSize) {
+void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector, std::vector<Vegetable>& vegetableVector, int width, int height, std::vector<std::vector<float>>& worldMap, std::vector<std::vector<float>>& temperatureMap, int gridSize) {
 	float dt = 1;
 	float moveAmount = 5;
 
 	#pragma region ManagePlants
 	// Spawn some plants
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 1; i++)
 	{
 		vegetableVector.push_back(Vegetable(1, (float)rand() / RAND_MAX * width, (float)rand() / RAND_MAX * height));
 	}
+
+	// Implementing Rotting
 	for (int i = 0; i < vegetableVector.size(); i++)
 	{
+		
 		vegetableVector[i].FoodValue -= 0.01;
 		if (vegetableVector[i].FoodValue <= 0) {
 			removeVegetable(vegetableVector, i);
@@ -77,11 +80,16 @@ void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector, std
 		float moveY = ((float)rand() / RAND_MAX * 2 - 1) ;
 		//std::cout << sin(degree * 3.14159 / 180) << std::endl;
 		
+		// Kill if no Food
+		if (creatureVector[i].Hunger <= 0) {
+			std::cout << vegetableVector.size()  << "ded" << creatureVector.size() << " " << i << " " << creatureVector[i].Size << std::endl;
+			removeCreature(creatureVector, i);
+			continue;
+		}
 
 		// Move
 		creatureVector[i].move(moveX * dt * moveAmount, moveY * dt * moveAmount);
 
-		// Spawn Offspring
 
 		// Check Values if still on Map
 		if (creatureVector[i].PosX > width) {
@@ -97,7 +105,7 @@ void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector, std
 			creatureVector[i].PosY = 0;
 		}
 
-		// Use Hunger
+		// Adjust Hunger
 		float discr = 0.3;
 		if (creatureVector[i].Specie.FavTemp > temperatureMap[coordX][coordY] + discr || creatureVector[i].Specie.FavTemp < temperatureMap[coordX][coordY] - discr) {
 			creatureVector[i].Hunger -= 0.001 * dt;
@@ -105,13 +113,18 @@ void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector, std
 		if (creatureVector[i].Specie.FavElev > worldMap[coordX][coordY] + discr || creatureVector[i].Specie.FavElev < worldMap[coordX][coordY] - discr) {
 			creatureVector[i].Hunger -= 0.01 * dt;
 		}
-		if (creatureVector[i].Hunger <= 0) {
-			removeCreature(creatureVector, i);
+
+		// Spawn Offspring
+		if (creatureVector[i].Hunger >= 1.5) {
+			std::cout << "ate" << creatureVector.size() << " " << i << " " << creatureVector[i].Size << std::endl;
+			createCreature(creatureVector, creatureVector[i].Specie, creatureVector[i].PosX + (float)rand() / RAND_MAX * 2 * 10, creatureVector[i].PosY + (float)rand() / RAND_MAX * 2 * 10);
+			creatureVector[i].Hunger -= 0.5;
 		}
 	}
-
+		
 	// Check for Hitbox
 	for (int j = 0; j < creatureVector.size(); j++) {
+		// Creatures
 		Creature& cre1 = creatureVector[j];
 		for (int y = j+1; y < creatureVector.size(); y++) {
 			Creature& cre2 = creatureVector[y];
@@ -126,8 +139,22 @@ void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector, std
 			if (abs(x1 - x2) <= cre1.Size / 2 + cre2.Size / 2 && abs(y1 - y2) <= cre1.Size / 2 + cre2.Size / 2){
 				// Changes vector and y
 				interactCreature(creatureVector, j, y);
-				
 			}
+		}
+		// Vegetable
+		for (int i = j+1; i < vegetableVector.size(); i++)
+		{
+			Vegetable& veg2 = vegetableVector[i];
+			float x1 = cre1.PosX;
+			float y1 = cre1.PosY;
+			float x2 = veg2.PosX;
+			float y2 = veg2.PosY;
+			if (abs(x1 - x2) <= cre1.Size / 2 + veg2.FoodValue * 10 / 2 && abs(y1 - y2) <= cre1.Size / 2 + veg2.FoodValue * 10 / 2) {
+				//std::cout << i << " " << j << " " << vegetableVector.size() << std::endl;
+				cre1.Hunger += veg2.FoodValue;
+				removeVegetable(vegetableVector, i);
+			}
+
 		}
 	}
 	
@@ -141,28 +168,25 @@ void CreatureManager::createCreature(std::vector<Creature>& creatureVector, Spec
 	creatureVector.push_back(Creature(specie, x, y));
 }
 
-void CreatureManager::removeVegetable(std::vector<Vegetable>& vegetableVector, int index) {
+void CreatureManager::removeVegetable(std::vector<Vegetable>& vegetableVector, int& index) {
 	vegetableVector.erase(vegetableVector.begin() + index);
+	index--;
 }
 
-void CreatureManager::removeCreature(std::vector<Creature>& creatureVector, int index) {
+void CreatureManager::removeCreature(std::vector<Creature>& creatureVector, int& index) {
 	creatureVector.erase(creatureVector.begin() + index);
+	index--;
 }
 
 // Changes vector!
-void CreatureManager::interactCreature(std::vector<Creature>& creatureVector, int indexKiller, int& indexToKill ) {
+void CreatureManager::interactCreature(std::vector<Creature>& creatureVector, int& index1, int& index2) {
 	//std::cout << creatureVector[indexKiller].Specie.Number << creatureVector[indexToKill].Specie.Number << std::endl;
-	if (creatureVector[indexKiller].Specie.Number != creatureVector[indexToKill].Specie.Number) {
-		if (creatureVector[indexKiller].Specie.Vore >= 2) {
-
-		}
+	if (creatureVector[index1].Specie.Number != creatureVector[index2].Specie.Number) {
 
 
-
-		//createCreature(creatureVector, creatureVector[indexKiller].Specie, creatureVector[indexToKill].PosX + (float)rand() / RAND_MAX * 2 - 1, creatureVector[indexToKill].PosY + (float)rand() / RAND_MAX * 2 - 1);
-		//removeCreature(creatureVector, indexToKill);
+		createCreature(creatureVector, creatureVector[index1].Specie, creatureVector[index2].PosX + (float)rand() / RAND_MAX * 2 - 1, creatureVector[index2].PosY + (float)rand() / RAND_MAX * 2 - 1);
+		removeCreature(creatureVector, index2);
 		// Exception, adjust to the changing vector
-		indexToKill -= 1;
 	}
 }
 
