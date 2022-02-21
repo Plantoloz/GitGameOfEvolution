@@ -54,7 +54,7 @@ void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector, std
 
 	#pragma region ManagePlants
 	// Spawn some plants
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		vegetableVector.push_back(Vegetable(1, (float)rand() / RAND_MAX * width, (float)rand() / RAND_MAX * height));
 	}
@@ -62,10 +62,10 @@ void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector, std
 	// Implementing Rotting
 	for (int i = 0; i < vegetableVector.size(); i++)
 	{
-		
 		vegetableVector[i].FoodValue -= 0.01;
 		if (vegetableVector[i].FoodValue <= 0) {
 			removeVegetable(vegetableVector, i);
+			continue;
 		}
 	}
 	#pragma endregion ManagePlants
@@ -80,12 +80,6 @@ void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector, std
 		float moveY = ((float)rand() / RAND_MAX * 2 - 1) ;
 		//std::cout << sin(degree * 3.14159 / 180) << std::endl;
 		
-		// Kill if no Food
-		if (creatureVector[i].Hunger <= 0) {
-			std::cout << vegetableVector.size()  << "ded" << creatureVector.size() << " " << i << " " << creatureVector[i].Size << std::endl;
-			removeCreature(creatureVector, i);
-			continue;
-		}
 
 		// Move
 		creatureVector[i].move(moveX * dt * moveAmount, moveY * dt * moveAmount);
@@ -105,6 +99,14 @@ void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector, std
 			creatureVector[i].PosY = 0;
 		}
 
+
+		// Spawn Offspring
+		if (creatureVector[i].Hunger >= 1.5) {
+			std::cout << "ate" << creatureVector.size() << " " << i << " " << creatureVector[i].Size << std::endl;
+			createCreature(creatureVector, creatureVector[i].Specie, creatureVector[i].PosX + (float)rand() / RAND_MAX * 2 * 10, creatureVector[i].PosY + (float)rand() / RAND_MAX * 2 * 10);
+			
+			creatureVector[i].Hunger -= 0.5;
+		}
 		// Adjust Hunger
 		float discr = 0.3;
 		if (creatureVector[i].Specie.FavTemp > temperatureMap[coordX][coordY] + discr || creatureVector[i].Specie.FavTemp < temperatureMap[coordX][coordY] - discr) {
@@ -113,15 +115,14 @@ void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector, std
 		if (creatureVector[i].Specie.FavElev > worldMap[coordX][coordY] + discr || creatureVector[i].Specie.FavElev < worldMap[coordX][coordY] - discr) {
 			creatureVector[i].Hunger -= 0.01 * dt;
 		}
-
-		// Spawn Offspring
-		if (creatureVector[i].Hunger >= 1.5) {
-			std::cout << "ate" << creatureVector.size() << " " << i << " " << creatureVector[i].Size << std::endl;
-			createCreature(creatureVector, creatureVector[i].Specie, creatureVector[i].PosX + (float)rand() / RAND_MAX * 2 * 10, creatureVector[i].PosY + (float)rand() / RAND_MAX * 2 * 10);
-			creatureVector[i].Hunger -= 0.5;
+		// Kill if no Food
+		if (creatureVector[i].Hunger <= 0) {
+			std::cout << vegetableVector.size()  << "ded" << creatureVector.size() << " " << i << " " << creatureVector[i].Size << std::endl;
+			removeCreature(creatureVector, i);
+			continue;
 		}
 	}
-		
+	std::cout << "loop1" << std::endl;
 	// Check for Hitbox
 	for (int j = 0; j < creatureVector.size(); j++) {
 		// Creatures
@@ -139,6 +140,7 @@ void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector, std
 			if (abs(x1 - x2) <= cre1.Size / 2 + cre2.Size / 2 && abs(y1 - y2) <= cre1.Size / 2 + cre2.Size / 2){
 				// Changes vector and y
 				interactCreature(creatureVector, j, y);
+				continue;
 			}
 		}
 		// Vegetable
@@ -154,10 +156,8 @@ void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector, std
 				cre1.Hunger += veg2.FoodValue;
 				removeVegetable(vegetableVector, i);
 			}
-
 		}
 	}
-	
 }
 
 void CreatureManager::createSpecies(std::vector<Species>& speciesVector, sf::Color color, float size, int number, float favTemp, float favElev, int vore) {
@@ -186,6 +186,7 @@ void CreatureManager::interactCreature(std::vector<Creature>& creatureVector, in
 
 		createCreature(creatureVector, creatureVector[index1].Specie, creatureVector[index2].PosX + (float)rand() / RAND_MAX * 2 - 1, creatureVector[index2].PosY + (float)rand() / RAND_MAX * 2 - 1);
 		removeCreature(creatureVector, index2);
+		
 		// Exception, adjust to the changing vector
 	}
 }

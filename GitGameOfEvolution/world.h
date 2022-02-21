@@ -19,9 +19,9 @@ private:
 	int _width;
 	int _height;
 	int _gridSize;
-	std::vector<Vegetable> _vegetableVector;
-	std::vector<Creature> _creatureVector;
-	std::vector<Species> _speciesVector;
+	std::vector<Vegetable>* _vegetableVector = new std::vector<Vegetable>;
+	std::vector<Creature>* _creatureVector = new std::vector<Creature>;
+	std::vector<Species>* _speciesVector = new std::vector<Species>;
 	sf::RenderTexture _backGround;
 };	
 
