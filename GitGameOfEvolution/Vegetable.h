@@ -6,5 +6,6 @@ public:
 	float FoodValue;
 	float PosX;
 	float PosY;
+	int Size = 20;
 };
 

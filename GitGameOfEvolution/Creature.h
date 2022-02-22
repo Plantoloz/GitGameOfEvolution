@@ -9,7 +9,7 @@ public:
 	void move(float amountX, float amountY);
 	//float Strength;
 	//float Speed;
-	float Hunger = 1;
+	float Hunger = 0.5;
 	float PosX;
 	float PosY;
 	float Size;
