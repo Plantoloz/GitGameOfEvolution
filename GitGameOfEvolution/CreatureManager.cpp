@@ -99,14 +99,15 @@ void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector, std
 		if (creatureVector[i].Hunger >= 1.5) {
 			createCreature(creatureVector, creatureVector[i].Specie, creatureVector[i].PosX + (float)rand() / RAND_MAX * 2 * 10, creatureVector[i].PosY + (float)rand() / RAND_MAX * 2 * 10);
 			
-			creatureVector[i].Hunger -= 0.5;
+			creatureVector[i].Hunger -= 0.5 * (creatureVector[i].Size/10);
 		}
 		// Adjust Hunger && Erzeugt gelegentlich out of bounce error. Konnte nicht wieder reproduziert werden
 		int coordX = (int)((int)creatureVector[i].PosX / gridSize);
 		if (coordX == width / gridSize) { coordX--; }
 		int coordY = (int)((int)creatureVector[i].PosY / gridSize);
 		if (coordY == height / gridSize) { coordY--; }
-		//std::cout << coordX << " " << temperatureMap.size() << std::endl;
+		std::cout << coordX << " X" << temperatureMap.size() << std::endl;
+		std::cout << coordY << " Y" << temperatureMap.size() << std::endl;
 		float discr = 0.3;
 
 		if (creatureVector[i].Specie.FavTemp > temperatureMap[coordX][coordY] + discr || creatureVector[i].Specie.FavTemp < temperatureMap[coordX][coordY] - discr) {
@@ -181,11 +182,14 @@ void CreatureManager::removeCreature(std::vector<Creature>& creatureVector, int&
 void CreatureManager::interactCreature(std::vector<Creature>& creatureVector, int& index1, int& index2) {
 	//std::cout << creatureVector[indexKiller].Specie.Number << creatureVector[indexToKill].Specie.Number << std::endl;
 	if (creatureVector[index1].Specie.Number != creatureVector[index2].Specie.Number) {
-
-
-		createCreature(creatureVector, creatureVector[index1].Specie, creatureVector[index2].PosX + (float)rand() / RAND_MAX * 2 - 1, creatureVector[index2].PosY + (float)rand() / RAND_MAX * 2 - 1);
-		removeCreature(creatureVector, index2);
-		
+		if (creatureVector[index1].Size >= creatureVector[index2].Size) {
+			creatureVector[index1].Hunger += creatureVector[index2].Hunger;
+			removeCreature(creatureVector, index2);
+		}
+		else {
+			creatureVector[index2].Hunger += creatureVector[index1].Hunger;
+			removeCreature(creatureVector, index1);
+		}
 		// Exception, adjust to the changing vector
 	}
 }

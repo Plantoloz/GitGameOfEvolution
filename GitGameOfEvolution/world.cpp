@@ -9,7 +9,8 @@ World::World(int width, int height, int gridSize) {
 	this->_temperatureMap = std::vector<std::vector<float>>((int)(width/gridSize), std::vector<float>((int)(height/gridSize)));
 	this->_temperatureMap = NoiseMap::createNoiseMap(_temperatureMap, 2);
 	MapCreator::drawMap(_backGround, _gridSize, _worldMap, _temperatureMap);
-
+	_creatureVector->reserve(1000);
+	_vegetableVector->reserve(1000);
 	
 
 	// tmp
