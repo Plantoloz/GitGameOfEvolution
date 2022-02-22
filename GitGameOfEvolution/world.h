@@ -12,7 +12,7 @@ class World
 public: 
 	World(int width, int height,int gridSize);
 	void drawWorld(sf::RenderWindow& window);
-	void simulateWorld(sf::RenderWindow& window);
+	void simulateWorld(sf::RenderWindow& window, int deltaTime);
 private:
 	std::vector<std::vector<float>> _worldMap;
 	std::vector<std::vector<float>> _temperatureMap;
@@ -23,6 +23,7 @@ private:
 	std::vector<Creature>* _creatureVector = new std::vector<Creature>;
 	std::vector<Species>* _speciesVector = new std::vector<Species>;
 	sf::RenderTexture _backGround;
+	int _deltaTimeSum = 0;
 };	
 
 	

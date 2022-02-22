@@ -1,6 +1,7 @@
 
 #include "CreatureManager.h"
 
+
 #pragma region Drawing
 void CreatureManager::drawVegetables(sf::RenderWindow& window, int gridSize, std::vector<Vegetable>& vegetableVector, int width, int height) {
 	// Base texture to draw all Creatures
@@ -48,21 +49,23 @@ sf::RectangleShape CreatureManager::drawCreature(float size, float x, float y, s
 
 #pragma region InfluenceCreature
 
-void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector, std::vector<Vegetable>& vegetableVector, int width, int height, std::vector<std::vector<float>>& worldMap, std::vector<std::vector<float>>& temperatureMap, int gridSize) {
-	float dt = 1;
+void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector, std::vector<Vegetable>& vegetableVector, int width, int height, std::vector<std::vector<float>>& worldMap, std::vector<std::vector<float>>& temperatureMap, int gridSize, int deltaTime, int& deltaTimeSum) {
+	deltaTimeSum += deltaTime;
 	float moveAmount = 5;
-
-	#pragma region ManagePlants
-	// Spawn some plants
-	for (int i = 0; i < 5; i++)
-	{
-		vegetableVector.push_back(Vegetable(1, (float)rand() / RAND_MAX * width, (float)rand() / RAND_MAX * height));
+	if (deltaTimeSum >= 200) {
+		// Spawn some plants
+		for (int i = 0; i < 5; i++)
+		{
+			vegetableVector.push_back(Vegetable(1, (float)rand() / RAND_MAX * width, (float)rand() / RAND_MAX * height));
+		}
+		deltaTimeSum -= 200;
 	}
+	#pragma region ManagePlants
 
 	// Implementing Rotting
 	for (int i = 0; i < vegetableVector.size(); i++)
 	{
-		vegetableVector[i].FoodValue -= 0.01;
+		vegetableVector[i].FoodValue -= 0.01*deltaTime;
 		if (vegetableVector[i].FoodValue <= 0) {
 			removeVegetable(vegetableVector, i);
 			continue;
@@ -77,7 +80,7 @@ void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector, std
 		
 
 		// Move
-		creatureVector[i].move(moveX * dt * moveAmount, moveY * dt * moveAmount);
+		creatureVector[i].move(moveX * deltaTime * moveAmount, moveY * deltaTime * moveAmount);
 
 
 		// Check Values if still on Map
@@ -101,20 +104,21 @@ void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector, std
 			
 			creatureVector[i].Hunger -= 0.5 * (creatureVector[i].Size/10);
 		}
+		std::cout << "loop1" << std::endl;
 		// Adjust Hunger && Erzeugt gelegentlich out of bounce error. Konnte nicht wieder reproduziert werden
 		int coordX = (int)((int)creatureVector[i].PosX / gridSize);
 		if (coordX == width / gridSize) { coordX--; }
 		int coordY = (int)((int)creatureVector[i].PosY / gridSize);
 		if (coordY == height / gridSize) { coordY--; }
-		std::cout << coordX << " X" << temperatureMap.size() << std::endl;
-		std::cout << coordY << " Y" << temperatureMap.size() << std::endl;
+		//std::cout << coordX << " X" << temperatureMap.size() << std::endl;
+		//std::cout << coordY << " Y" << temperatureMap.size() << std::endl;
 		float discr = 0.3;
-
+		std::cout << "loop2" << std::endl;
 		if (creatureVector[i].Specie.FavTemp > temperatureMap[coordX][coordY] + discr || creatureVector[i].Specie.FavTemp < temperatureMap[coordX][coordY] - discr) {
-			creatureVector[i].Hunger -= 0.001 * dt;
+			creatureVector[i].Hunger -= 0.001 * deltaTime;
 		}
 		if (creatureVector[i].Specie.FavElev > worldMap[coordX][coordY] + discr || creatureVector[i].Specie.FavElev < worldMap[coordX][coordY] - discr) {
-			creatureVector[i].Hunger -= 0.01 * dt;
+			creatureVector[i].Hunger -= 0.01 * deltaTime;
 		}
 
 		// Kill if no Food
@@ -123,6 +127,7 @@ void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector, std
 			continue;
 		}
 	}
+	std::cout << "loop3" << std::endl;
 	// Check for Hitbox
 	for (int j = 0; j < creatureVector.size(); j++) {
 		// Creatures

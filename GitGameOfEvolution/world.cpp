@@ -28,8 +28,8 @@ void World::drawWorld(sf::RenderWindow& window) {
 	CreatureManager::drawVegetables(window, _gridSize, *_vegetableVector, _width, _height);
 	CreatureManager::drawCreatures(window, _gridSize, *_creatureVector, _width , _height);
 }
-void World::simulateWorld(sf::RenderWindow& window) {
-	CreatureManager::moveAllCreature(*_creatureVector, *_vegetableVector, _width, _height, _worldMap, _temperatureMap, _gridSize);
+void World::simulateWorld(sf::RenderWindow& window, int deltaTime) {
+	CreatureManager::moveAllCreature(*_creatureVector, *_vegetableVector, _width, _height, _worldMap, _temperatureMap, _gridSize, deltaTime, _deltaTimeSum);
 	
 }
 
