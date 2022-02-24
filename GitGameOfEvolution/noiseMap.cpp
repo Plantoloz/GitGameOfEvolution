@@ -16,6 +16,5 @@ std::vector<std::vector<float>> NoiseMap::createNoiseMap(std::vector<std::vector
 
 		}
 	}
-	std::cout << "Done";
 	return world;
 }
