@@ -10,7 +10,7 @@ int main()
     sf::Clock deltaClock;
     int deltaTime = 0;
     srand((unsigned int)time(NULL));
-    sf::RenderWindow window(sf::VideoMode(winWidth, winHeight), "SFML works!", sf::Style::Close | sf::Style::Resize);
+    sf::RenderWindow window(sf::VideoMode(winWidth, winHeight), "GameOfEvolution, also try GameOfLive", sf::Style::Close | sf::Style::Resize);
     World world(winWidth, winHeight, gridSize);
     window.setFramerateLimit(60);
     while (window.isOpen())
@@ -24,7 +24,6 @@ int main()
                 window.close();
                 break;
             case sf::Event::Resized:
-                std::cout << "Height: " << event1.size.height << " Width: " << event1.size.width << std::endl;
                 break;
             case sf::Event::TextEntered:
                 if (event1.text.unicode < 128) {

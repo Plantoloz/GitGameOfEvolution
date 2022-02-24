@@ -14,7 +14,7 @@ World::World(int width, int height, int gridSize) {
 	
 
 	// tmp
-	for (int y = 0; y < 10; y++) {
+	for (int y = 0; y < 25; y++) {
 		CreatureManager::createSpecies(*_speciesVector, sf::Color(rand(), rand(), rand()), (float)rand() / RAND_MAX * 15 + 7.5, y, (float)rand() / (RAND_MAX), (float)rand() / (RAND_MAX), (int)((float)rand() / RAND_MAX * 3));
 		for (int i = 0; i < 25; i++) {
 			CreatureManager::createCreature(*_creatureVector, (*_speciesVector)[y], (float)rand() / RAND_MAX * width, (float)rand() / RAND_MAX * height);

@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Creature">
+    <Position X="4.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgACAAAAAwAAgAAAAIAAAAAAAgAIAAAA=</HashCode>
+      <FileName>Creature.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CreatureManager">
+    <Position X="6" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEEBAAABAAAAAACAgAAAAAAAAAIABEAAAAA=</HashCode>
+      <FileName>CreatureManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoiseMap">
+    <Position X="11.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NoiseMap.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OpenSimplex2S" Collapsed="true">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Struct Name="OpenSimplex2S::Grad2" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>OpenSimplex2S.hpp</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="OpenSimplex2S::Grad3" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>OpenSimplex2S.hpp</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="OpenSimplex2S::Grad4" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>OpenSimplex2S.hpp</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="OpenSimplex2S::LatticePoint2D" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>OpenSimplex2S.hpp</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="OpenSimplex2S::LatticePoint3D" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>OpenSimplex2S.hpp</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="OpenSimplex2S::LatticePoint4D" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>OpenSimplex2S.hpp</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="OpenSimplex2S::Initializer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>OpenSimplex2S.hpp</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAxAggBAAACAAkkAAACEIQAgAAgUQAAIAAEQAEgEAA=</HashCode>
+      <FileName>OpenSimplex2S.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MapCreator">
+    <Position X="9.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAgEAAAAAAAA=</HashCode>
+      <FileName>MapCreator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Species">
+    <Position X="6" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAgAAAAEAQAQAAAAAAAAAAAAAAgAABAAA=</HashCode>
+      <FileName>Species.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Vegetable">
+    <Position X="4.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAkAAAAAAAwAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Vegetable.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="World">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAADCAAAAAAQAAAAEEABAIgAAAAAAAFQAAAAA=</HashCode>
+      <FileName>World.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
