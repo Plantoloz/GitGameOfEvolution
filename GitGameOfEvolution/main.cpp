@@ -10,7 +10,7 @@ int main()
     sf::Clock deltaClock;
     int deltaTime = 0;
     srand((unsigned int)time(NULL));
-    sf::RenderWindow window(sf::VideoMode(winWidth, winHeight), "GameOfEvolution, also try GameOfLive", sf::Style::Close | sf::Style::Resize);
+    sf::RenderWindow window(sf::VideoMode(winWidth, winHeight), "GameOfEvolution, also try GameOfLife", sf::Style::Close | sf::Style::Resize);
     World world(winWidth, winHeight, gridSize);
     window.setFramerateLimit(60);
     while (window.isOpen())
