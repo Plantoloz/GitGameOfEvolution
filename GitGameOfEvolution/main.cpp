@@ -37,8 +37,8 @@ int main()
         window.clear();
 
         deltaTime += deltaClock.restart().asMilliseconds();
-        int framesPerTick = 60;
-        if (deltaTime >= 1000/ framesPerTick) {
+        int framesPerTick = 30;
+        if (deltaTime >= 1000 / framesPerTick) {
             deltaTime -= 1000 / framesPerTick;
             world.simulateWorld(window);
         }
