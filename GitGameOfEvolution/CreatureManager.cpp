@@ -53,7 +53,7 @@ void CreatureManager::moveAllCreature(std::vector<Creature>& creatureVector, std
 	float moveAmount = 5;
 	#pragma region ManagePlants
 	// Spawn some plants
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		vegetableVector.push_back(Vegetable(1, (float)rand() / RAND_MAX * width, (float)rand() / RAND_MAX * height));
 	}
